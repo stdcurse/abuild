@@ -1,0 +1,16 @@
+on: [push, pull_request]
+
+jobs:
+  build_aarch64_artifact:
+    runs-on: alpine-latest
+    name: Build abuild (aarch64)
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Run commands
+        id: runcmd
+        with:
+          arch: aarch64
+          distro: alpine-latest
+          run: |
+            uname -a
