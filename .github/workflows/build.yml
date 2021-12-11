@@ -1,8 +1,7 @@
 on: [push, pull_request]
-
 jobs:
   build_aarch64_artifact:
-    runs-on: alpine-latest
+    runs-on: alpine_latest
     name: Build abuild (aarch64)
     steps:
       - uses: actions/checkout@v2.1.0
@@ -11,6 +10,6 @@ jobs:
         id: runcmd
         with:
           arch: aarch64
-          distro: alpine-latest
+          distro: alpine_latest
           run: |
             uname -a
