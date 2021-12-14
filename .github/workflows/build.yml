@@ -12,4 +12,4 @@ jobs:
           arch: aarch64
           distro: alpine_latest
           run: |
-            ls
+            ls /
