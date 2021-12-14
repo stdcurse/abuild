@@ -33,7 +33,7 @@ main() {
 
   echo "Installing dependencies..."
   apk update
-  apk install build-base openssl1.1-compat-dev zlib-dev openssl-dev
+  apk add build-base openssl1.1-compat-dev zlib-dev openssl-dev
 
   echo "Downloading abuild sources..."
   cd /tmp
