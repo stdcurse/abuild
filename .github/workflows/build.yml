@@ -1,7 +1,7 @@
 on: [push, pull_request]
 jobs:
   build_aarch64_artifact:
-    runs-on: alpine_latest
+    runs-on: alpine-latest
     name: Build abuild (aarch64)
     steps:
       - uses: actions/checkout@v2.1.0
