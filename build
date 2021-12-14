@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Copyright (c) 2021 Nikita Nikiforov <vokestd@gmail.com>
+#
+# This software is provided 'as-is', without any express or implied
+# warranty. In no event will the authors be held liable for any damages
+# arising from the use of this software.
+#
+# Permission is granted to anyone to use this software for any purpose,
+# including commercial applications, and to alter it and redistribute it
+# freely, subject to the following restrictions:
+#
+# 1. The origin of this software must not be misrepresented; you must not
+#        claim that you wrote the original software. If you use this software
+#        in a product, an acknowledgement in the product documentation would be
+#        appreciated but is not required.
+# 2. Altered source versions must be plainly marked as such, and must not be
+#        misrepresented as being the original software.
+# 3. This notice may not be removed or altered from any source distribution.
+
+umask 022
+unalias -a
+set -e
+
+abuild_ver="3.9.0"
+abuild_url="https://git.alpinelinux.org/abuild/snapshot/abuild-$abuild_ver.tar.xz"
+
+main() {
+  if [[ $EUID -ne 0 ]]; then
+    echo "You must be root to run \"$0\""
+    false
+  fi
+
+  echo "Installing dependencies..."
+  apk update
+  apk install build-base openssl1.1-compat-dev zlib-dev openssl-dev
+
+  echo "Downloading abuild sources..."
+  cd /tmp
+  curl -L "$abuild_url" --output abuild.tar.xz
+
+  echo "Extracting abuild sources..."
+  cd /tmp
+  tar xpf abuild.tar.xz
+
+  echo "Building abuild..."
+  cd "/tmp/abuild-$abuild_ver"
+  make CFLAGS="-static" LDFLAGS="-static" SCDOC="true" PREFIX="/tools"
+}
+
+main "$@"
+
+exit 0

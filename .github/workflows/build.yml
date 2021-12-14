@@ -12,4 +12,6 @@ jobs:
           arch: aarch64
           distro: alpine_latest
           run: |
-            ls /
+            apk update
+            apk add bash curl
+            curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
