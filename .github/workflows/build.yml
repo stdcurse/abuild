@@ -1,4 +1,8 @@
-on: [push, pull_request]
+on: 
+  push:
+    tags:
+    - "*"
+
 jobs:
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
@@ -20,11 +24,8 @@ jobs:
             apk update
             apk add bash curl
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
-      - name: Show
-        run: |
-          ls -la ${PWD}/artifacts/abuild-*.tar.gz
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "${PWD}/artifacts/abuild-*.tar.gz"
+          artifacts: ${PWD}/artifacts/abuild-*.tar.gz
           token: ${{ secrets.GTOKEN }}
           tag: ${{ github.ref_name }}.${{ github.sha }}
