@@ -45,7 +45,7 @@ main() {
 
   echo "Building abuild..."
   cd "/tmp/abuild-$abuild_ver"
-  make CFLAGS="-march=generic -mtune=generic -static" LDFLAGS="-static" SCDOC="true" PREFIX="/tools"
+  make CFLAGS="-static" LDFLAGS="-static" SCDOC="true" PREFIX="/tools"
 
   echo "Bundling abuild..."
   cd "/tmp/abuild-$abuild_ver"
