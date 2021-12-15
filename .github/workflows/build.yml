@@ -21,9 +21,7 @@ jobs:
             apk add bash curl
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
       - uses: ncipollo/release-action@v1
-        name: Create release
         with:
           artifacts: "${PWD}/artifacts/abuild-*.tar.gz"
           token: ${{ secrets.GTOKEN }}
           tag: ${{ github.head_ref }}.${{ github.sha }}
- 
