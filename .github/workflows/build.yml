@@ -11,7 +11,14 @@ jobs:
         with:
           arch: aarch64
           distro: alpine_latest
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+          dockerRunArgs: |
+            --volume "${PWD}/artifacts:/artifacts"
           run: |
             apk update
             apk add bash curl
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
+      - name: Show
+        run: |
+          ls -al "${PWD}/artifacts"

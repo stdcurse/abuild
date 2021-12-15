@@ -45,7 +45,14 @@ main() {
 
   echo "Building abuild..."
   cd "/tmp/abuild-$abuild_ver"
-  make CFLAGS="-static" LDFLAGS="-static" SCDOC="true" PREFIX="/tools"
+  make CFLAGS="-march=generic -mtune=generic -static" LDFLAGS="-static" SCDOC="true" PREFIX="/tools"
+
+  echo "Bundling abuild..."
+  cd "/tmp/abuild-$abuild_ver"
+  make install PREFIX="/tools" DESTDIR="/artifacts"
+
+  cd /artifacts
+  tar czf "abuild-$(uname -m).tar.gz" *
 }
 
 main "$@"
