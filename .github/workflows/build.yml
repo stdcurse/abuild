@@ -23,6 +23,6 @@ jobs:
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: ${PWD}/artifacts/abuild-*.tar.gz
+          artifacts: "artifacts/abuild-aarch64.tar.gz"
           token: ${{ secrets.GTOKEN }}
           tag: ${{ github.ref_name }}.${{ github.sha }}
