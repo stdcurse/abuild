@@ -25,3 +25,5 @@ jobs:
         with:
           artifacts: "${PWD}/artifacts/abuild-*.tar.gz"
           token: ${{ secrets.GTOKEN }}
+          tag: ${{ github.head_ref }}.${{ github.sha }}
+ 
