@@ -52,6 +52,7 @@ main() {
   make install PREFIX="/tools" DESTDIR="/artifacts"
 
   cd /artifacts
+  mv usr tools
   tar czf "abuild-$(uname -m).tar.gz" *
 }
 
