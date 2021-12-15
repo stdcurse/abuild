@@ -11,6 +11,7 @@ jobs:
         with:
           arch: aarch64
           distro: alpine_latest
+          githubToken: ${{ secrets.GTOKEN }}
           setup: |
             mkdir -p "${PWD}/artifacts"
           dockerRunArgs: |
