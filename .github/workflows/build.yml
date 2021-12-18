@@ -15,10 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0
       - run: |
+          mkdir artifacts
+          ln -s /artifacts ${PWD}/artifacts
           apk update
           apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
           curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
-      - run: pwd
+      - run: find
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
     name: Build abuild (aarch64)
