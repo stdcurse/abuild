@@ -63,6 +63,6 @@ jobs:
           path: artifacts/abuild-x86_64.tar.gz
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "artifacts/abuild-aarch64.tar.gz artifacts/abuild-x86_64.tar.gz"
+          artifacts: "artifacts/abuild-aarch64.tar.gz,artifacts/abuild-x86_64.tar.gz"
           token: ${{ secrets.GTOKEN }}
           tag: ${{ github.ref_name }}.${{ github.sha }}
