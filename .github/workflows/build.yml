@@ -7,10 +7,9 @@ on:
       - main
 
 jobs:
-  strategy:
-    max-parallel: 1
   build_x86_64_artifact:
     runs-on: ubuntu-latest
+    max-parallel: 1
     container:
       image: alpine:edge
       options: --user root
@@ -25,6 +24,7 @@ jobs:
           curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
+    max-parallel: 1
     name: Build abuild (aarch64)
     steps:
       - uses: actions/checkout@v2.1.0
