@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0
       - run: |
+          whoami
           mkdir /artifacts
           apt update
           apt install curl build-essential libssl-dev libssl libcrypto libcrypto-ssl
