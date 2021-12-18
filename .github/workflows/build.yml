@@ -41,6 +41,11 @@ jobs:
             apk update
             apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
+  do_release:
+    runs-on: ubuntu-latest
+    name: Create release
+    steps:
+      - run: ls "artifacts/"
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "artifacts/abuild-aarch64.tar.gz"

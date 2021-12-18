@@ -22,6 +22,8 @@ umask 022
 unalias -a
 set -e
 
+arch="$(uname -m)"
+
 abuild_ver="3.9.0"
 abuild_url="https://git.alpinelinux.org/abuild/snapshot/abuild-$abuild_ver.tar.xz"
 
@@ -45,9 +47,9 @@ main() {
 
   echo "Bundling abuild..."
   cd "/tmp/abuild-$abuild_ver"
-  make install PREFIX="/tools" DESTDIR="/artifacts"
+  make install PREFIX="/tools" DESTDIR="/artifacts/$arch"
 
-  cd /artifacts
+  cd "/artifacts/$arch"
   mv usr tools
   tar czf "abuild-$(uname -m).tar.gz" *
 }
