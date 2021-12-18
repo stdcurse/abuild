@@ -12,7 +12,7 @@ jobs:
       image: alpine:edge
       options: --user root
       volumes:
-        - artifacts:/artifacts
+        - "${PWD}/artifacts:/artifacts"
     name: Build abuild (x86_64)
     steps:
       - uses: actions/checkout@v2.1.0
