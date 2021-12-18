@@ -9,14 +9,17 @@ on:
 jobs:
   build_x86_64_artifact:
     runs-on: ubuntu-latest
+    image: alpine:edge
+    options: --user root
+    volumes:
+      - artifacts:/artifacts
     name: Build abuild (x86_64)
     steps:
       - uses: actions/checkout@v2.1.0
       - run: |
-          sudo mkdir /artifacts
-          sudo apt update
-          sudo apt install -y curl build-essential libssl-dev libssl libcrypto libcrypto-ssl
-          curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | sudo bash
+          apk update
+          apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
+          curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
     name: Build abuild (aarch64)
