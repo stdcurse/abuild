@@ -31,10 +31,6 @@ main() {
     false
   fi
 
-  echo "Installing dependencies..."
-  apk update
-  apk add build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
-
   echo "Downloading abuild sources..."
   cd /tmp
   curl -L "$abuild_url" --output abuild.tar.xz
