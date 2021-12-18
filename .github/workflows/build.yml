@@ -19,7 +19,10 @@ jobs:
           apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
           curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
           mv /artifacts .
-      - run: find
+      - uses: actions/upload-artifact@master
+        with:
+          name: x86_64
+          path: artifacts/x86_64/abuild-x86_64.tar.gz
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
     name: Build abuild (aarch64)
@@ -40,14 +43,26 @@ jobs:
             apk update
             apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
+      - uses: actions/upload-artifact@master
+        with:
+          name: aarch64
+          path: artifacts/aarch64/abuild-aarch64.tar.gz
   do_release:
     runs-on: ubuntu-latest
     needs: [build_aarch64_artifact, build_x86_64_artifact]
     name: Create release
     steps:
-      - run: ls "artifacts/"
+      - run: mkdir artifacts
+      - uses: actions/download-artifact@master
+        with:
+          name: aarch64
+          path: artifacts/abuild-aarch64.tar.gz
+      - uses: actions/download-artifact@master
+        with:
+          name: x86_64
+          path: artifacts/abuild-x86_64.tar.gz
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "artifacts/abuild-aarch64.tar.gz"
+          artifacts: "artifacts/abuild-aarch64.tar.gz artifacts/abuild-x86_64.tar.gz"
           token: ${{ secrets.GTOKEN }}
           tag: ${{ github.ref_name }}.${{ github.sha }}

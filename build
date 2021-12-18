@@ -23,7 +23,6 @@ unalias -a
 set -e
 
 arch="$(uname -m)"
-echo "$arch"
 abuild_ver="3.9.0"
 abuild_url="https://git.alpinelinux.org/abuild/snapshot/abuild-$abuild_ver.tar.xz"
 
