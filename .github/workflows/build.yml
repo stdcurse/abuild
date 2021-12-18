@@ -20,7 +20,7 @@ jobs:
           apk update
           apk add bash curl build-base openssl-libs-static zlib-static openssl1.1-compat-dev zlib-dev openssl-dev
           curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
-      - run: ls
+      - run: find .
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
     name: Build abuild (aarch64)
