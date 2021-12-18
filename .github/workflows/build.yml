@@ -61,6 +61,7 @@ jobs:
         with:
           name: x86_64
           path: artifacts/abuild-x86_64.tar.gz
+      - run: find
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "artifacts/abuild-aarch64.tar.gz,artifacts/abuild-x86_64.tar.gz"
