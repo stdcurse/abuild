@@ -9,10 +9,11 @@ on:
 jobs:
   build_x86_64_artifact:
     runs-on: ubuntu-latest
-    image: alpine:edge
-    options: --user root
-    volumes:
-      - artifacts:/artifacts
+    container:
+      image: alpine:edge
+      options: --user root
+      volumes:
+        - artifacts:/artifacts
     name: Build abuild (x86_64)
     steps:
       - uses: actions/checkout@v2.1.0
