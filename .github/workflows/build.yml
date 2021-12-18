@@ -5,12 +5,9 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   build_x86_64_artifact:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
     container:
       image: alpine:edge
       options: --user root
@@ -25,8 +22,6 @@ jobs:
           curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
-    strategy:
-      max-parallel: 1
     name: Build abuild (aarch64)
     steps:
       - uses: actions/checkout@v2.1.0
@@ -47,8 +42,7 @@ jobs:
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   do_release:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
+    needs: [build_aarch64_artifact, build_x86_64_artifact]
     name: Create release
     steps:
       - run: ls "artifacts/"
