@@ -47,6 +47,8 @@ jobs:
             curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   do_release:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
     name: Create release
     steps:
       - run: ls "artifacts/"
