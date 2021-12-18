@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2.1.0
       - run: |
-        mkdir /artifacts
-        apt update
-        apt install curl build-essential libssl-dev libssl libcrypto libcrypto-ssl
-        curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
+          mkdir /artifacts
+          apt update
+          apt install curl build-essential libssl-dev libssl libcrypto libcrypto-ssl
+          curl -L "https://raw.githubusercontent.com/stdcurse/abuild/main/build" | bash
   build_aarch64_artifact:
     runs-on: ubuntu-18.04
     name: Build abuild (aarch64)
