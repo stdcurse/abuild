@@ -1,10 +1,8 @@
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    tags:
+      - "v*"
+
 jobs:
   build_x86_64_artifact:
     runs-on: ubuntu-latest
@@ -65,4 +63,4 @@ jobs:
         with:
           artifacts: "artifacts/abuild-aarch64.tar.gz,artifacts/abuild-x86_64.tar.gz"
           token: ${{ secrets.GTOKEN }}
-          tag: ${{ github.ref_name }}.${{ github.sha }}
+          tag: ${{ github.ref_name }}

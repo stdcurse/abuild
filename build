@@ -50,6 +50,7 @@ main() {
 
   cd "/artifacts/$arch"
   mv usr tools
+  rm -rf etc
   tar czf "abuild-$(uname -m).tar.gz" *
 }
 
